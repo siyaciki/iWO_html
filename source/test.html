@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+
+		<script src="../js/jquery-1.8.0.js"></script>
+
+	</head>
+
+	<body>
+<script>jQuery.noConflict()</script>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: true
+			});
+			function getNums() {
+				jQuery.ajax({
+					url:'http://192.168.1.30/mixes/a.php',
+					type: 'post',
+					dataType: 'json',
+					data: {},
+					//异步加载
+					async: false,
+					headers:{'Content-Type':'application/json'},
+					success: function(data) {
+						console.log("success");
+						//console.log(data.length);
+//						for(var i=0;i < data.length;i++){
+//							console.log("姓名"+data[i].username+"密码"+data[i].password);
+//							console.log("----------");
+//						}
+						console.log("姓名"+data.username+"密码"+data.password);
+						jQuery("#chikaNews").html(data.age);
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+							var str = "status：" + XMLHttpRequest.status + "---readyState：" + XMLHttpRequest.readyState +"---textStatus：" + textStatus + "---responseText：" + XMLHttpRequest.responseText;
+							console.log(str);
+						}
+
+				});
+				
+			}//function结束
+
+			mui.plusReady(function() {
+				console.log("输出...");
+				getNums();
+				
+			//5秒自动刷新
+			setInterval(function() {
+					
+					console.log("interval中");
+					getNums();
+				}, 5000);
+
+			//登陆获取消息更新条数
+			
+			
+			});			
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">测试   问题</h1>
+
+		</header>
+		<div class="mui-content" style="text-align: center;">
+			<div>timeout刷新</div>
+			<div>interval刷新</div>
+			<div>
+				<a href="#">
+					<span><i class="icon iconfont">&#xe64e;
+					<span id="chikaNews" class="mui-badge mui-badge-red">2</span>
+					</i>
+					</span>
+					<div class="mui-media-body">h5视频嵌套</div>
+					<div class="mui-media-body">mui 局部刷新</div>
+				</a>
+			</div>
+		</div>
+	</body>
+
+</html>
