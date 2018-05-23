@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+				<!-- 引入bootstrap样式 -->
+		<link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+		<!-- 引入bootstrap-table样式 -->
+		<link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet">
+		<!-- jquery -->
+		<script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
+		<script>jQuery.noConflict()</script>
+		<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<!-- bootstrap-table.min.js -->
+		<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+		<!-- 引入中文语言包 -->
+		<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+	</head>
+	<body>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			jQuery(function() {
+				jQuery("#table").bootstrapTable({ // 对应table标签的id
+					//url: "http://192.168.1.112/iWO_test/index.php/Home/Login/msga", // 获取表格数据的url
+					url:'http://localhost/mixes/a.php',
+					cache: false, // 设置为 false 禁用 AJAX 数据缓存， 默认为true
+					striped: true, //表格显示条纹，默认为false
+					pagination: true, // 在表格底部显示分页组件，默认false
+					pageList: [10, 20], // 设置页面可以显示的数据条数
+					pageSize: 2, // 页面数据条数
+					pageNumber: 1, // 首页页码
+					sidePagination: 'client', // 设置为客户端分页
+					columns: [
+							{checkbox: true, align: 'center' },
+							{field: 'code', title: '编号', align: 'center', valign: 'middle'},
+							{field: 'name',title: '名称',align: 'center',valign: 'middle'}
+						],
+					onLoadSuccess: function() { console.info("加载成功");},
+					onLoadError: function(XMLHttpRequest, textStatus, errorThrown) { //加载失败时执行
+						console.info("加载数据失败");
+						var str = "状态" + XMLHttpRequest.status + "---" + XMLHttpRequest.readyState + textStatus + "内容" + XMLHttpRequest.responseText;
+						console.log(str);
+					}
+				});
+			});
+		</script>
+		<div class="mui-content"><table id="table"></table></div>
+	</body>S
+</html>

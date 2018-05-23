@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.ready(function() {
+				setTimeout(function() {
+					mui.toast(1);
+					console.log("asd");
+				}, 1000)
+			});
+			mui.ajax('http://192.168.1.30/mixes/a.php', {
+				data: {
+					username: 'username',
+					password: 'password'
+				},
+				dataType: 'json', //服务器返回json格式数据
+				type: 'post', //HTTP请求类型
+				timeout: 10000, //超时时间设置为10秒；
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				success: function(data) {
+					mui.toast(data.username + data.password);
+				},
+				error: function(xhr, type, errorThrown) {
+					//异常处理；
+					console.log(type);
+					mui.toast(type);
+				}
+			});
+		</script>
+	</body>
+
+</html>

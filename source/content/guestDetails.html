@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			@font-face {
+				font-family: "iconfont";
+				src: url('../../fonts/iconfont.eot');
+				/* IE9*/
+				src: url('../../fonts/iconfont.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+				url('../../fonts/iconfont.woff') format('woff'), /* chrome, firefox */
+				url('../../fonts/iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+				url('../../fonts/iconfont.svg#iconfont') format('svg');
+				/* iOS 4.1- */
+			}
+			
+			.iconfont {
+				font-family: "iconfont" !important;
+				font-size: 48px;
+				font-style: normal;
+				-webkit-font-smoothing: antialiased;
+				-webkit-text-stroke-width: 0.2px;
+				-moz-osx-font-smoothing: grayscale;
+			}
+			
+			.juzhong {
+				text-align: center;
+				display: inline-block;
+				width: 50%;
+			}
+
+			
+			body {
+				background-color: white;
+			}
+			
+			.mui-content {
+				background-color: white;
+				/*padding-left: 7%;*/
+			}
+		</style>
+	</head>
+
+	<body>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">乘客详细信息</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-card">
+				<div class="mui-card-header">乘客信息</div>
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner">
+						<div><div class="juzhong"><i class="icon iconfont">&#xe6d8;</i></div><div class="juzhong">位置:2A</div></div>
+						<div>
+							<div class="juzhong">姓名：张飞</div><div class="juzhong">年龄：32岁</div>
+						</div>
+						<div>
+							<div class="juzhong">性别：女士</div><div class="juzhong">生日：10.30</div>
+						</div>
+						<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;手机 ： 18812345678</div>
+					</div>
+
+					<div class="mui-card-footer">特殊需求</div>
+					<div class="mui-input-row" style="margin:0 5% 0 5%">
+						<textarea id="textarea" rows="3" placeholder="特殊需求"></textarea>
+					</div>
+					<div class="mui-card-footer">爱好</div>
+					<div class="mui-input-row" style="margin:0 5% 0 5%">
+						<textarea id="textarea" rows="3" placeholder="爱好"></textarea>
+					</div>
+
+				</div>
+			</div>
+			<div class="mui-card">
+				<div class="mui-card-footer">特殊情况</div>
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner">
+						<form class="mui-input-group">
+							<div class="mui-radio kuaihua mui-left">
+									<label>孕妇</label>
+									<input name="radio1" type="radio">
+								</div>
+							<div class="mui-radio kuaihua mui-left">
+									<label>老人</label>
+									<input name="radio1" type="radio" checked>
+								</div>
+							<div class="mui-radio kuaihua mui-left">
+									<label>婴儿</label>
+									<input name="radio1" type="radio">
+								</div>
+							<div class="mui-radio kuaihua mui-left">
+									<label>儿童</label>
+									<input name="radio1" type="radio">
+								</div>
+							<div class="mui-radio kuaihua mui-left">
+									<label>伤残</label>
+									<input name="radio1" type="radio">
+								</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
