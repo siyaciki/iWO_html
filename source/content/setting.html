@@ -31,7 +31,7 @@
 			}
 			
 			.mui-pages {
-				top: 29px;
+				top: 46px;
 				height: auto;
 			}
 			
@@ -170,13 +170,10 @@
 							<li class="mui-table-view-cell">
 								<div class='mui-table'>
 									<div class='mui-table-cell mui-col-xs-10'>
-										<b class="mui-h5"> + key_array[1] + </b>
-										
+										<h4 class='mui-ellipsis'> + key_array[1] + </h4>
+										<p class='mui-h6 mui-ellipsis'> + key_array[2] + </p>
 									</div>
-									<div class='mui-table-cell mui-col-xs-2 mui-text-right'><span class='mui-h5'>财务部</span>
-										<p class='mui-h6 mui-ellipsis'>2018/5/24</p>
-									</div>
-
+									<div class='mui-table-cell mui-col-xs-2 mui-text-right'><span class='mui-h5'> + key_array[3] + </span></div>
 								</div>
 							</li>
 						</ul>
@@ -272,7 +269,7 @@
 							key_array.push(data[i][key]);
 						}
 						//mui.toast(key_array.length);
-						jQuery("ul").append("<li class='mui-table-view-cell'><div class='mui-table'><div class='mui-table-cell mui-col-xs-9'><b>" + key_array[1] + "</b></div><div class='mui-table-cell mui-col-xs-3 mui-text-right'><span class='mui-h5'>" + key_array[3] + "</span><p class='mui-h6'>" + key_array[2] + "</p></div></div></li>");
+						jQuery("ul").append("<li class='mui-table-view-cell'><div class='mui-table'><div class='mui-table-cell mui-col-xs-10'><h4 class='mui-ellipsis'>" + key_array[1] + "</h4><p class='mui-h6 mui-ellipsis'>" + key_array[2] + "</p></div><div class='mui-table-cell mui-col-xs-2 mui-text-right'><span class='mui-h5'>" + key_array[3] + "</span></div></div></li>");
 						key_array.splice(0, key_array.length);
 					}
 					//jQuery("#asd").html(data.length);

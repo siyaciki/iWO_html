@@ -31,7 +31,10 @@
 			"source/test.html",
 			"source/content/ajax.html",
 			"source/ajax.html",
-			"source/content/guestDetails.html"
+			"source/content/guestDetails.html",
+			"source/content/msg.html",
+			"source/content/qieye.html",
+			"source/content/qiehuan.html"
 		],
 		"resources": []
 	},
@@ -104,6 +107,21 @@
 		]
 	},
 	"source/content/guestDetails.html": {
+		"refer": [
+			"source/index.html"
+		]
+	},
+	"source/content/msg.html": {
+		"refer": [
+			"source/index.html"
+		]
+	},
+	"source/content/qieye.html": {
+		"refer": [
+			"source/index.html"
+		]
+	},
+	"source/content/qiehuan.html": {
 		"refer": [
 			"source/index.html"
 		]

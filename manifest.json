@@ -155,7 +155,10 @@
 					"source/test.html",
 					"source/content/ajax.html",
 					"source/ajax.html",
-					"source/content/guestDetails.html"
+					"source/content/guestDetails.html",
+					"source/content/msg.html",
+					"source/content/qieye.html",
+					"source/content/qiehuan.html"
 				],
 				"priority": 0
 			},
@@ -249,6 +252,27 @@
 				"priority": 0
 			},
 			"source/content/guestDetails.html": {
+				"resources": [],
+				"refer": [
+					"source/index.html"
+				],
+				"priority": 0
+			},
+			"source/content/msg.html": {
+				"resources": [],
+				"refer": [
+					"source/index.html"
+				],
+				"priority": 0
+			},
+			"source/content/qieye.html": {
+				"resources": [],
+				"refer": [
+					"source/index.html"
+				],
+				"priority": 0
+			},
+			"source/content/qiehuan.html": {
 				"resources": [],
 				"refer": [
 					"source/index.html"

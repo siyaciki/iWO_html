@@ -106,11 +106,24 @@
 				swipeBack: true
 			});
 			mui.plusReady(function(){
-				document.getElementById("exit").addEventListener("tap", function() {
-					localStorage.clear();
-					mui.openWindow({url:'login_test.html',id:'login_test.html'});
-					mui.toast("退出成功");
-				});
+//				document.getElementById("exit").addEventListener("tap", function() {
+//					localStorage.clear();
+//					mui.openWindow({url:'login_test.html',id:'login_test.html'});
+//					mui.toast("退出成功");
+//				});
+//				
+				document.getElementById("exit").addEventListener('tap', function() {
+				var btnArray = ['否', '是'];
+				mui.confirm('你确定注销并退出登录么？', '注销', btnArray, function(e) {
+					if (e.index == 1) {
+						localStorage.clear();
+						mui.openWindow({url:'login_test.html',id:'login_test.html'});
+						mui.toast("退出成功");
+					} else {
+						mui.toast("取消成功");
+					}
+				})
+			});
 			});
 
 		</script>
@@ -177,9 +190,9 @@
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
-					<a href="content/Msg.html">
+					<a href="content/msg.html">
 						<i class="icon iconfont">&#xe669;</i>
-						<div class="mui-media-body">消息推送</div>
+						<div class="mui-media-body">乘务消息</div>
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
@@ -189,9 +202,9 @@
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
-					<a href="content/msgTest.html">
+					<a href="content/setting.html">
 						<i class="icon iconfont">&#xe669;</i>
-						<div class="mui-media-body">消息推送</div>
+						<div class="mui-media-body">页面切换</div>
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
