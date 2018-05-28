@@ -116,7 +116,8 @@
 	},
 	"source/content/msg.html": {
 		"refer": [
-			"source/index.html"
+			"source/index.html",
+			"source/content/msgAdd.html"
 		]
 	},
 	"source/content/qieye.html": {
@@ -141,6 +142,13 @@
 	},
 	"source/content/biaoqingbao.html": {
 		"refer": [
+			"source/index.html"
+		]
+	},
+	"source/content/msgAdd.html": {
+		"refer": [
+			"source/content/msg.html",
+			"source/content/information.html",
 			"source/index.html"
 		]
 	}

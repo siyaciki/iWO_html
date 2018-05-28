@@ -101,17 +101,49 @@
 
 	<body>
 		<script src="../js/mui.min.js"></script>
+		<script src="../js/jquery-1.8.0.js"></script>
 		<script type="text/javascript">
 			mui.init({
 				swipeBack: true
 			});
+			function getNums() {
+				jQuery.ajax({
+					url:'http://192.168.1.30/mixes/mixes/a.php',
+					type: 'post',
+					dataType: 'json',
+					data: {},
+					//异步加载
+					async: false,
+					headers:{'Content-Type':'application/json'},
+					success: function(data) {
+						//对象转字符串
+ 						var a = JSON.stringify(data);
+
+
+						jQuery("#ask_mark").html(data.ask_marks);
+						jQuery("#msg_mark").html(data.msg_marks);
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+							var str = "status：" + XMLHttpRequest.status + "---readyState：" + XMLHttpRequest.readyState +"---textStatus：" + textStatus + "---responseText：" + XMLHttpRequest.responseText;
+							console.log(str);
+						}
+
+				});
+				
+			}//function结束
 			mui.plusReady(function(){
-//				document.getElementById("exit").addEventListener("tap", function() {
-//					localStorage.clear();
-//					mui.openWindow({url:'login_test.html',id:'login_test.html'});
-//					mui.toast("退出成功");
+				getNums();
+				
+			//5秒自动刷新
+			setInterval(function() {
+					
+					console.log("interval中");
+					getNums();
+				}, 1000);
+
+			//登陆获取消息更新条数
 //				});
-//				
+//			
 				document.getElementById("exit").addEventListener('tap', function() {
 				var btnArray = ['否', '是'];
 				mui.confirm('你确定注销并退出登录么？', '注销', btnArray, function(e) {
@@ -124,7 +156,8 @@
 					}
 				})
 			});
-			});
+
+			});			//plusReady	闭合
 
 		</script>
 		<header class="mui-bar mui-bar-nav">
@@ -138,7 +171,7 @@
 					<a href="error.html">
 						<span>
 							<i class="icon iconfont">&#xe616;</i>
-							<span id="guestAsks" class="mui-badge mui-badge-red">2</span>
+							<span id="ask_mark" class="mui-badge mui-badge-red">2</span>
 						</span>
 						<div class="mui-media-body">乘客公告</div>
 					</a>
@@ -150,10 +183,10 @@
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
-					<a href="#">
+					<a href="content/guestAsks.html">
 						<span>
 						    <i class="icon iconfont">&#xe673;</i>
-						    <span id="guestAsks" class="mui-badge mui-badge-red">2</span>
+						    <span id="ask_mark" class="mui-badge mui-badge-red">2</span>
 					    </span>
 						<div class="mui-media-body">乘客请求</div>
 					</a>
@@ -186,7 +219,7 @@
 					<a href="content/msg.html">
 						<span>
 						   	<i class="icon iconfont">&#xe669;</i>
-						    <span id="chengwunews" class="mui-badge mui-badge-red">2</span>
+						    <span id="msg_mark" class="mui-badge mui-badge-red">2</span>
 					   </span>
 						<div class="mui-media-body">乘务消息</div>
 					</a>

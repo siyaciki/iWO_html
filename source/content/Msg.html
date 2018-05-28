@@ -15,46 +15,6 @@
 				background-color: #efeff4;
 			}
 			
-			.mui-views,
-			.mui-view,
-			.mui-pages,
-			.mui-page,
-			.mui-page-content {
-				position: absolute;
-				left: 0;
-				right: 0;
-				top: 0;
-				bottom: 0;
-				width: 100%;
-				height: 100%;
-				background-color: #efeff4;
-			}
-			
-			.mui-pages {
-				top: 29px;
-				height: auto;
-			}
-			
-			.mui-scroll-wrapper,
-			.mui-scroll {
-				background-color: #efeff4;
-			}
-			
-			.mui-page.mui-transitioning {
-				-webkit-transition: -webkit-transform 300ms ease;
-				transition: transform 300ms ease;
-			}
-			
-			.mui-page-left {
-				-webkit-transform: translate3d(0, 0, 0);
-				transform: translate3d(0, 0, 0);
-			}
-			
-			.mui-page-left {
-				-webkit-transform: translate3d(-20%, 0, 0);
-				transform: translate3d(-20%, 0, 0);
-			}
-			
 			.mui-navbar {
 				position: fixed;
 				right: 0;
@@ -70,16 +30,6 @@
 				text-align: center;
 			}
 			
-			.mui-android .mui-navbar-inner.mui-navbar-left {
-				opacity: 0;
-			}
-			
-			.mui-navbar-left .mui-left,
-			.mui-navbar-left .mui-center,
-			.mui-navbar-left .mui-right {
-				opacity: 0;
-			}
-			
 			.mui-navbar .mui-btn-nav {
 				-webkit-transition: none;
 				transition: none;
@@ -92,285 +42,121 @@
 				width: auto;
 			}
 			
-			.mui-page-shadow {
-				position: absolute;
-				right: 100%;
-				top: 0;
-				width: 16px;
-				height: 100%;
-				z-index: -1;
-				content: '';
-			}
-			
-			.mui-page-shadow {
-				background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
-				background: linear-gradient(to right, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
-			}
-			
-			.mui-navbar-inner.mui-transitioning,
-			.mui-navbar-inner .mui-transitioning {
-				-webkit-transition: opacity 300ms ease, -webkit-transform 300ms ease;
-				transition: opacity 300ms ease, transform 300ms ease;
-			}
-			
-			.mui-page {
-				display: none;
-			}
-			
-			.mui-pages .mui-page {
-				display: block;
-			}
-			
-			.mui-page {
-				margin-top: 15px;
-			}
-			
-			.mui-page {
-				margin-bottom: 30px;
-			}
-			
-			.mui-fullscreen {
-				position: fixed;
-				z-index: 20;
-				background-color: #000;
-			}
-			
 			.mui-navbar .mui-bar .mui-title {
 				position: static;
-			}
-			
-			select {
-				width: 70px;
-				height: 37px;
-				padding: 0 0 0 20px;
 			}
 		</style>
 		<!--<link rel="stylesheet" type="text/css" href="../css/feedback.css" />-->
 	</head>
 
-	<body class="mui-fullscreen">
-		<!--页面主结构开始-->
-		<div id="app" class="mui-views">
-			<div class="mui-view">
-				<div class="mui-navbar">
-				</div>
-				<div class="mui-pages">
-				</div>
-			</div>
+	<body>
+
+		<!--页面标题栏开始-->
+		<div class=" mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" href="../index.html"></a>
+			<a class="mui-pull-right mui-icon mui-icon-plusempty" href="msgAdd.html"></a>
+			<h1 class="mui-title">乘务消息</h1>
 		</div>
-		<!--页面主结构结束-->
-		<!--单页面开始-->
-		<div id="setting" class="mui-page">
-			<!--页面标题栏开始-->
-			<div class="mui-navbar-inner mui-bar mui-bar-nav">
-				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-				<a class="mui-pull-right mui-icon mui-icon-plusempty" href="#message_make"></a>
-				<h1 class="mui-center mui-title">乘务消息</h1>
-			</div>
-			<!--页面标题栏结束-->
-			<!--页面主内容区开始-->
-			<div class="mui-page-content">
-				<div class="mui-scroll-wrapper">
-					<div class="mui-scroll">
-						<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed" style="margin: 5px 5px;">
-							<li class="mui-table-view-cell">
-								<div class='mui-table'>
-									<div class='mui-table-cell mui-col-xs-10'>
-										<b class="mui-h5"> + key_array[1] + </b>
 
-									</div>
-									<div class='mui-table-cell mui-col-xs-2 mui-text-right'><span class='mui-h5'>财务部</span>
-										<p class='mui-h6 mui-ellipsis'>2018/5/24</p>
-									</div>
+		<div class="mui-content">
+			<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed" style="margin: 5px 5px;">
+				<li class="mui-table-view-cell">
+					<div class='mui-table'>
+						<div class='mui-table-cell mui-col-xs-10'>
+							<b class="mui-h5"> + key_array[1] + </b>
 
-								</div>
-							</li>
-						</ul>
+						</div>
+						<div class='mui-table-cell mui-col-xs-2 mui-text-right'><span class='mui-h5'>财务部</span>
+							<p class='mui-h6 mui-ellipsis'>2018/5/24</p>
+						</div>
+
 					</div>
-				</div>
-			</div>
-			<!--页面主内容区结束-->
+				</li>
+			</ul>
 		</div>
-		<!--单页面结束-->
-
-		<div id="message_make" class="mui-page feedback">
-			<div class="mui-navbar-inner mui-bar mui-bar-nav">
-				<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
-					<span class="mui-icon mui-icon-left-nav"></span>
-				</button>
-				<button id="submit" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">发送</button>
-				<h1 class="mui-center mui-title">消息发布</h1>
-			</div>
-			<div class="mui-page-content">
-				<div class="mui-content-padded">
-					<select class="mui-btn" style="width:6.4em; text-align: center;">
-						<option value="item-1">一般通知</option>
-						<option value="item-2">重要通知</option>
-						<option value="item-3">紧急通知</option>
-					</select>
-				</div>
-				<div class="row mui-input-row" style="margin: 10px 5px;">
-					<textarea class="mui-input-clear" placeholder="请填写要发送的乘务消息..." rows="10"></textarea>
-					<textarea class="mui-input-clear" id="areaTxt" oninput="autoTextAreaHeight(this)" placeholder="请填写要发送的乘务消息..."></textarea>
-				</div>
-			</div>
-
-		</div>
-	</body>
-	<script src="../../js/mui.min.js "></script>
-	<script src="../../js/mui.view.js "></script>
-	<!--	<script src='../../js/feedback.js'></script>-->
-	<script>
-//		mui.init({
-//			//mui 初始化时设置pullRefresh各项参数
-//			pullRefresh: {
-//				container: refreshContainer, //待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
-//				up: {
-//					height: 50, //可选.默认50.触发上拉加载拖动距离
-//					auto: true, //可选,默认false.自动上拉加载一次
-//					contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
-//					contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
-//					callback: pullfresh - function //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
-//				}
-//			}
-//		});
-//		//结束上拉加载
-//		function pullfresh - function() {
-//			//业务逻辑代码，比如通过ajax从服务器获取新数据；
-//			......
-//			//注意：
-//			//1、加载完新数据后，必须执行如下代码，true表示没有更多数据了：
-//			//2、若为ajax请求，则需将如下代码放置在处理完ajax响应数据之后
-//			this.endPullupToRefresh(true | false);
-//		}
-		
-		//初始化单页view
-		var viewApi = mui('#app').view({
-			defaultPage: '#setting'
-		});
-		//初始化单页的区域滚动
-		mui('.mui-scroll-wrapper').scroll();
-
-		var view = viewApi.view;
-		(function($) {
-			//处理view的后退与webview后退
-			var oldBack = $.back;
-			$.back = function() {
-				if(viewApi.canBack()) { //如果view可以后退，则执行view的后退
-					viewApi.back();
-				} else { //执行webview后退
-					oldBack();
-				}
-			};
-			//监听页面切换事件方案1,通过view元素监听所有页面切换事件，目前提供pageBeforeShow|pageShow|pageBeforeBack|pageBack四种事件(before事件为动画开始前触发)
-			//第一个参数为事件名称，第二个参数为事件回调，其中e.detail.page为当前页面的html对象
-			view.addEventListener('pageBeforeShow', function(e) {
-				//		console.log(e.detail.page.id + ' beforeShow');
-			});
-			view.addEventListener('pageShow', function(e) {
-				//		console.log(e.detail.page.id + ' show');
-			});
-			view.addEventListener('pageBeforeBack', function(e) {
-				//		console.log(e.detail.page.id + ' beforeBack');
-			});
-			view.addEventListener('pageBack', function(e) {
-				//		console.log(e.detail.page.id + ' back');
-			});
-		})(mui);
-	</script>
-	<script src="../../js/jquery-1.8.0.js"></script>
-	<script>
-		jQuery(function() {
-			var numss = localStorage.getItem('noticeNum');
-			var a_cont = new Array();
-			a_cont["nums"] = numss;
-			var cont = a_cont.toString();
-			//获取数据
-			jQuery.ajax({
-				url: 'http://192.168.1.30/mixes/getMsg.php',
-				type: 'post',
-				dataType: 'json',
-				data: cont,
-				async: false,
-				success: function(data) {
-					//接受数据库的数据并显示，listview
-					//长度，json数组的元素个数
-					var lens = data.length;
-					var key_array = Array();
-					//遍历json数组
-					for(var i = 0; i < lens; i++) {
-						//遍历元素数组
-						for(var key in data[i]) {
-							//mui.toast(data[i][key]);
-							//数组添加元素
-							key_array.push(data[i][key]);
+		<script src="../../js/mui.min.js "></script>
+		<script src="../../js/jquery-1.8.0.js"></script>
+		<script>
+			//list加载
+			function listload() {
+				jQuery("ul li").remove();
+				var numss = localStorage.getItem('noticeNum');
+				var a_cont = new Array();
+				a_cont["nums"] = numss;
+				var cont = a_cont.toString();
+				//获取数据
+				jQuery.ajax({
+					url: 'http://192.168.1.30/mixes/mixes/getMsg.php',
+					type: 'post',
+					dataType: 'json',
+					data: cont,
+					async: false,
+					success: function(data) {
+						//接受数据库的数据并显示，listview
+						//长度，json数组的元素个数
+						var lens = data.length;
+						var key_array = Array();
+						//遍历json数组
+						for(var i = 0; i < lens; i++) {
+							//遍历元素数组
+							for(var key in data[i]) {
+								//mui.toast(data[i][key]);
+								//数组添加元素
+								key_array.push(data[i][key]);
+							}
+							//mui.toast(key_array.length);
+							//js中date设置时间戳是13位，php的time获取是10位
+							var unixTimestamp = new Date(key_array[3] * 1000);
+							var time_str= unixTimestamp.toLocaleString();
+							jQuery("ul").append("<li class='mui-table-view-cell'><div class='mui-table'><div class='mui-table-cell mui-col-xs-8'><b>" + key_array[0] + ":" + key_array[2] + "</b></div><div class='mui-table-cell mui-col-xs-4 mui-text-right'><span class='mui-h5'>" + key_array[4] + "</span><p class='mui-h6'>" + time_str + "</p></div></div></li>");
+							key_array.splice(0, key_array.length);
 						}
-						//mui.toast(key_array.length);
-						//js中date设置时间戳是13位，php的time获取是10位
-						var unixTimestamp = new Date(key_array[3] * 1000);
-						var s = unixTimestamp.toLocaleString();
-
-						jQuery("ul").append("<li class='mui-table-view-cell'><div class='mui-table'><div class='mui-table-cell mui-col-xs-9'><b>" + key_array[0] + ":" + key_array[2] + "</b></div><div class='mui-table-cell mui-col-xs-3 mui-text-right'><span class='mui-h5'>" + key_array[4] + "</span><p class='mui-h6'>" + key_array[3] + "</p></div></div></li>");
-						key_array.splice(0, key_array.length);
+						//jQuery("#asd").html(data.length);
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						var str = "连接错误" + XMLHttpRequest.status + "---" + XMLHttpRequest.readyState + textStatus + "naiyo" + XMLHttpRequest.responseText;
+						mui.toast(str);
 					}
-					//jQuery("#asd").html(data.length);
-				},
-				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					var str = "连接错误" + XMLHttpRequest.status + "---" + XMLHttpRequest.readyState + textStatus + "naiyo" + XMLHttpRequest.responseText;
-					mui.toast(str);
+
+				});
+			}
+
+			jQuery(function() {
+				listload();
+			});
+			mui.init({
+				//mui 初始化时设置pullRefresh各项参数
+				pullRefresh: {
+					container: '.mui-content', //待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
+					up: {
+
+						height: 50, //可选.默认50.触发上拉加载拖动距离
+						auto: false, //可选,默认false.自动上拉加载一次
+						contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
+						contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: pullupRefresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+					},
+					down: {
+						style: 'circle',
+						callback: pulldownRefresh
+					}
 				}
 			});
+			//结束上拉加载
+			function pullupRefresh() {
+				setTimeout(function() {
+					listload();
+					mui('.mui-content').pullRefresh().endPullupToRefresh();
+				}, 1000);
+			}
 
-		});
-		document.getElementById("submit").addEventListener('tap', function() {
-			//获取选择框值
-			var title = jQuery("select option:selected").text();
-			//获取文本框数据
-			var text_area = jQuery("#areaTxt").val();
-			//获取登录用户名
-			var xingming = localStorage.getItem('username');
-			//获取当前时间戳
-			var timestamp = Math.round(new Date().getTime() / 1000).toString();
-			mui.toast(timestamp);
-			var cont = {
-				"title": title,
-				"content": text_area,
-				"time": timestamp,
-				"name": xingming
-			};
-			var cont2 = [{
-				"title": title,
-				"content": text_area,
-				"time": timestamp,
-				"name": xingming
-			}];
-			jQuery.ajax({
-				url: 'http://192.168.1.112/test/insertMsg.php',
-				type: 'post',
-				dataType: 'json',
-				data: cont,
-				async: false,
-				success: function(data) {
-					mui.toast(data);
-					mui.toast("发送成功");
-					//单页面view跳转
-					mui('#app').view().go('#setting');
-				},
-				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					var str = "连接错误" + XMLHttpRequest.status + "---" + XMLHttpRequest.readyState + textStatus + "naiyo" + XMLHttpRequest.responseText;
-					mui.toast(str);
-				}
-			});
-
-		});
-		//textarea自动随内容增高
-		function autoTextAreaHeight(o) {
-			o.style.height = o.scrollTop + o.scrollHeight + "px";
-		}
-		jQuery(function() {
-			var ele = document.getElementById("areaTxt");
-			autoTextAreaHeight(ele);
-		});
-	</script>
+			function pulldownRefresh() {
+				setTimeout(function() {
+					listload();
+					mui('.mui-content').pullRefresh().endPulldownToRefresh();
+				}, 1000);
+			}
+		</script>
+	</body>
 
 </html>

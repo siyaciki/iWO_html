@@ -264,7 +264,8 @@
 			"source/content/msg.html": {
 				"resources": [],
 				"refer": [
-					"source/index.html"
+					"source/index.html",
+					"source/content/msgAdd.html"
 				],
 				"priority": 0
 			},
@@ -299,6 +300,15 @@
 			"source/content/biaoqingbao.html": {
 				"resources": [],
 				"refer": [
+					"source/index.html"
+				],
+				"priority": 0
+			},
+			"source/content/msgAdd.html": {
+				"resources": [],
+				"refer": [
+					"source/content/msg.html",
+					"source/content/information.html",
 					"source/index.html"
 				],
 				"priority": 0

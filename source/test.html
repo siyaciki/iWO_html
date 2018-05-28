@@ -1,86 +1,67 @@
-<!doctype html>
-<html>
-
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link href="../css/mui.min.css" rel="stylesheet" />
-
-		<script src="../js/jquery-1.8.0.js"></script>
-
-	</head>
-
-	<body>
-<script>jQuery.noConflict()</script>
-		<script src="../js/mui.min.js"></script>
-		<script type="text/javascript">
-			mui.init({
-				swipeBack: true
-			});
-			function getNums() {
-				jQuery.ajax({
-					url:'http://192.168.1.30/mixes/a.php',
-					type: 'post',
-					dataType: 'json',
-					data: {},
-					//异步加载
-					async: false,
-					headers:{'Content-Type':'application/json'},
-					success: function(data) {
-						console.log("success");
-						//console.log(data.length);
-//						for(var i=0;i < data.length;i++){
-//							console.log("姓名"+data[i].username+"密码"+data[i].password);
-//							console.log("----------");
-//						}
-						console.log("姓名"+data.username+"密码"+data.password);
-						jQuery("#chikaNews").html(data.age);
-					},
-					error: function(XMLHttpRequest, textStatus, errorThrown) {
-							var str = "status：" + XMLHttpRequest.status + "---readyState：" + XMLHttpRequest.readyState +"---textStatus：" + textStatus + "---responseText：" + XMLHttpRequest.responseText;
-							console.log(str);
-						}
-
-				});
-				
-			}//function结束
-
-			mui.plusReady(function() {
-				console.log("输出...");
-				getNums();
-				
-			//5秒自动刷新
-			setInterval(function() {
-					
-					console.log("interval中");
-					getNums();
-				}, 5000);
-
-			//登陆获取消息更新条数
-			
-			
-			});			
-		</script>
-		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">测试   问题</h1>
-
-		</header>
-		<div class="mui-content" style="text-align: center;">
-			<div>timeout刷新</div>
-			<div>interval刷新</div>
-			<div>
-				<a href="#">
-					<span><i class="icon iconfont">&#xe64e;
-					<span id="chikaNews" class="mui-badge mui-badge-red">2</span>
-					</i>
-					</span>
-					<div class="mui-media-body">h5视频嵌套</div>
-					<div class="mui-media-body">mui 局部刷新</div>
-				</a>
-			</div>
-		</div>
-	</body>
-
-</html>
+<!DOCTYPE html> 
+<html> 
+    <head> 
+    <meta charset="utf-8"> 
+    <title>Audio Example</title> 
+    <script type="text/javascript"> 
+// 扩展API加载完毕后调用onPlusReady回调函数  
+document.addEventListener( "plusready", onPlusReady, false ); 
+var r = null;  
+// 扩展API加载完毕，现在可以正常调用扩展API  
+function onPlusReady() {  
+    r = plus.audio.getRecorder();  
+} 
+function startRecord() { 
+    if ( r == null ) { 
+        alert( "Device not ready!" ); 
+        return;  
+    }  
+    r.record( {filename:"_doc/audio/xx.amr"}, function () {//真机测试文件在/sdcard/Android/data/io.dcloud.HBuilder/.HBuilder/apps/HBuilder/doc下面（.HBuilder是隐藏的，要查看隐藏的文件） 
+        alert( "Audio record success!" ); 
+    }, function ( e ) { 
+        alert( "Audio record failed: " + e.message ); 
+    } ); 
+} 
+function stopRecord() { 
+    r.stop();  
+} 
+function player(){//播放音乐www.bcty365.com 
+    s = plus.audio.createPlayer( "_doc/audio/gg.mp3" ); 
+    var num = s.getDuration();//获取音频总长度number 
+    setTimeout(function(){//延时获取，否则可能没有返回长度 
+        var num = s.getDuration(); 
+        alert(num) 
+    },100) 
+ 
+    s.play( function () { 
+        alert( "Audio play success!" );  
+    }, function ( e ) { 
+        alert( "Audio play error: " + e.message );  
+    } );  
+} 
+function pause(){//暂停播放 
+    s.pause(); 
+} 
+function resume() {//恢复播放 
+    s.resume(); 
+} 
+function seekTo(){ 
+    s.seekTo(100); 
+} 
+    </script> 
+    </head> 
+    <body> 
+        <input type="button" value="Start Record" onclick="startRecord();"/>  
+        <br/> 
+        <input type="button" value="Stop Record" onclick="stopRecord();"/> 
+        <br /> 
+        <input type="button" value="player" onclick="player();"/> 
+        <br /> 
+        <input type="button" value="暂停" onclick="pause();"/> 
+        <br /> 
+        <input type="button" value="恢复" onclick="resume();"/> 
+        <br /> 
+        <input type="button" value="跳到指定位置" onclick="seekTo();"/> 
+ 
+</body> 
+</html> 
