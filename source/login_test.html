@@ -46,18 +46,6 @@
 						}
 					});
 				});
-				//视频打开页面
-				document.getElementById('test').addEventListener('tap', function() {
-					//设置sessionStroge
-
-					mui.openWindow({
-						url: 'test.html',
-						id: 'test.html',
-//						styles: {
-//							hardwareAccelerated: true
-//						}
-					});
-				});
 
 				document.getElementById('jiu').addEventListener('tap', function() {
 					mui.toast("跳转主页");
@@ -99,8 +87,7 @@
 				</div>
 				<div class="" style="text-align: center;">
 					<button type="button" id="send" class="mui-btn mui-btn-blue">提交</button>
-					<button type="button" id="test" class="mui-btn mui-btn-green">测试</button>
-					<button type="button" id="jiu" class="mui-btn mui-btn-blue">主页九宫格</button>
+					<button type="button" id="jiu" class="mui-btn mui-btn-green">主页九宫格</button>
 					<button type="button" id="jiu2" class="mui-btn mui-btn-blue">屏幕切换</button>
 				</div>
 			</form>

@@ -158,7 +158,10 @@
 					"source/content/guestDetails.html",
 					"source/content/msg.html",
 					"source/content/qieye.html",
-					"source/content/qiehuan.html"
+					"source/content/qiehuan.html",
+					"source/content/guestInfos.html",
+					"source/content/guestAsks.html",
+					"source/content/biaoqingbao.html"
 				],
 				"priority": 0
 			},
@@ -273,6 +276,27 @@
 				"priority": 0
 			},
 			"source/content/qiehuan.html": {
+				"resources": [],
+				"refer": [
+					"source/index.html"
+				],
+				"priority": 0
+			},
+			"source/content/guestInfos.html": {
+				"resources": [],
+				"refer": [
+					"source/index.html"
+				],
+				"priority": 0
+			},
+			"source/content/guestAsks.html": {
+				"resources": [],
+				"refer": [
+					"source/index.html"
+				],
+				"priority": 0
+			},
+			"source/content/biaoqingbao.html": {
 				"resources": [],
 				"refer": [
 					"source/index.html"

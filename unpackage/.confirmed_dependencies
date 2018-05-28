@@ -34,7 +34,10 @@
 			"source/content/guestDetails.html",
 			"source/content/msg.html",
 			"source/content/qieye.html",
-			"source/content/qiehuan.html"
+			"source/content/qiehuan.html",
+			"source/content/guestInfos.html",
+			"source/content/guestAsks.html",
+			"source/content/biaoqingbao.html"
 		],
 		"resources": []
 	},
@@ -122,6 +125,21 @@
 		]
 	},
 	"source/content/qiehuan.html": {
+		"refer": [
+			"source/index.html"
+		]
+	},
+	"source/content/guestInfos.html": {
+		"refer": [
+			"source/index.html"
+		]
+	},
+	"source/content/guestAsks.html": {
+		"refer": [
+			"source/index.html"
+		]
+	},
+	"source/content/biaoqingbao.html": {
 		"refer": [
 			"source/index.html"
 		]
