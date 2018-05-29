@@ -111,7 +111,8 @@
 	},
 	"source/content/guestDetails.html": {
 		"refer": [
-			"source/index.html"
+			"source/index.html",
+			"source/content/guestInfos.html"
 		]
 	},
 	"source/content/msg.html": {
@@ -132,7 +133,9 @@
 	},
 	"source/content/guestInfos.html": {
 		"refer": [
-			"source/index.html"
+			"source/index.html",
+			"source/content/guestInfos.html",
+			"source/content/guestDetails.html"
 		]
 	},
 	"source/content/guestAsks.html": {

@@ -257,7 +257,8 @@
 			"source/content/guestDetails.html": {
 				"resources": [],
 				"refer": [
-					"source/index.html"
+					"source/index.html",
+					"source/content/guestInfos.html"
 				],
 				"priority": 0
 			},
@@ -286,7 +287,9 @@
 			"source/content/guestInfos.html": {
 				"resources": [],
 				"refer": [
-					"source/index.html"
+					"source/index.html",
+					"source/content/guestInfos.html",
+					"source/content/guestDetails.html"
 				],
 				"priority": 0
 			},
