@@ -37,7 +37,8 @@
 			"source/content/qiehuan.html",
 			"source/content/guestInfos.html",
 			"source/content/guestAsks.html",
-			"source/content/biaoqingbao.html"
+			"source/content/biaoqingbao.html",
+			"source/content/socketTest.html"
 		],
 		"resources": []
 	},
@@ -152,6 +153,11 @@
 		"refer": [
 			"source/content/msg.html",
 			"source/content/information.html",
+			"source/index.html"
+		]
+	},
+	"source/content/socketTest.html": {
+		"refer": [
 			"source/index.html"
 		]
 	}

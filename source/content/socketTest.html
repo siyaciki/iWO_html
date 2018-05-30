@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			var Socket = plus.android.importClass("java.net.Socket");
+        var PrintWriter = plus.android.importClass("java.io.PrintWriter");
+        var BufferedWriter = plus.android.importClass("java.io.BufferedWriter");
+        var OutputStreamWriter = plus.android.importClass("java.io.OutputStreamWriter");
+        var BufferedReader = plus.android.importClass("java.io.BufferedReader");
+        var InputStreamReader = plus.android.importClass("java.io.InputStreamReader");
+
+        //测试改良
+        var StrictMode = plus.android.importClass("android.os.StrictMode");
+        var Build = plus.android.importClass("android.os.Build");
+        if (Build.VERSION.SDK_INT > 9) {
+            var policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        var socket = new Socket("127.0.0.1",9100);
+        var outputStreamWriter = new OutputStreamWriter(socket.getOutputStream());
+        var bufferWriter = new BufferedWriter(outputStreamWriter);
+        var out = new PrintWriter(bufferWriter, true);
+        out.println("Conneted...");
+
+        var inputStreamReader = new InputStreamReader(socket.getInputStream());
+        var br = new BufferedReader(inputStreamReader);
+        var msg = br.readLine();
+
+        //while(true)
+        {
+            if(msg != null)
+            {
+                console.log(msg);
+            }
+            //msg = br.readLine();      
+        }
+    }
+    //console.log(mac);
+    alert("Done");
+		</script>
+	</body>
+
+</html>

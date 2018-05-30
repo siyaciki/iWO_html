@@ -161,7 +161,8 @@
 					"source/content/qiehuan.html",
 					"source/content/guestInfos.html",
 					"source/content/guestAsks.html",
-					"source/content/biaoqingbao.html"
+					"source/content/biaoqingbao.html",
+					"source/content/socketTest.html"
 				],
 				"priority": 0
 			},
@@ -312,6 +313,13 @@
 				"refer": [
 					"source/content/msg.html",
 					"source/content/information.html",
+					"source/index.html"
+				],
+				"priority": 0
+			},
+			"source/content/socketTest.html": {
+				"resources": [],
+				"refer": [
 					"source/index.html"
 				],
 				"priority": 0
