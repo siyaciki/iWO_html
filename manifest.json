@@ -162,7 +162,8 @@
 					"source/content/guestInfos.html",
 					"source/content/guestAsks.html",
 					"source/content/biaoqingbao.html",
-					"source/content/socketTest.html"
+					"source/content/socketTest.html",
+					"source/content/shebei.html"
 				],
 				"priority": 0
 			},
@@ -318,6 +319,13 @@
 				"priority": 0
 			},
 			"source/content/socketTest.html": {
+				"resources": [],
+				"refer": [
+					"source/index.html"
+				],
+				"priority": 0
+			},
+			"source/content/shebei.html": {
 				"resources": [],
 				"refer": [
 					"source/index.html"

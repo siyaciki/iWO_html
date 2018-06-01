@@ -135,12 +135,9 @@
 	<script src="../../js/jquery-1.8.0.js"></script>
 	<script>
 		jQuery(function() {
-					var numss = localStorage.getItem('noticeNum');
-					var a_cont = new Array();
-					a_cont['nums'] = numss;
-					var cont = a_cont.toString();
+					var cont = {};
 					jQuery.ajax({
-							url: 'http://192.168.1.35:8082/mixes/guestAsks.php',
+							url: 'http://192.168.1.30/mixes/mixes/guestAsks.php',
 							type: 'post',
 							dataType: 'json',
 							data: cont,
