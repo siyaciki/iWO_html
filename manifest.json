@@ -163,7 +163,8 @@
 					"source/content/guestAsks.html",
 					"source/content/biaoqingbao.html",
 					"source/content/socketTest.html",
-					"source/content/shebei.html"
+					"source/content/shebei.html",
+					"source/conn.html"
 				],
 				"priority": 0
 			},

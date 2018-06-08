@@ -1,31 +1,84 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title></title>
-    <script src="js/mui.min.js"></script>
-    <link href="css/mui.min.css" rel="stylesheet"/>
-    <script type="text/javascript" charset="utf-8">
-      	mui.init();
-    </script>
-</head>
-<body>
 
-	<div class="mui-content">
-	<ul class="mui-table-view">
-		<li class="mui-table-view-cell mui-plus-visible">
-			<a class="mui-navigate-right" href="source/login_test.html">
-				login_test.ajax
-			</a>
-		</li>
-		<li class="mui-table-view-cell mui-plus-visible" style="text-align: center;">
-				<div>
-		使用要求同意
-	</div>
-		</li>
-	</ul>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<script src="js/jquery-1.8.0.js">
+		</script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			// H5 plus事件处理,检测网络
+			function plusReady() {
+				var types = {};
+				types[plus.networkinfo.CONNECTION_UNKNOW] = "未知网络 连接";
+				types[plus.networkinfo.CONNECTION_NONE] = "无网络 连接";
+				types[plus.networkinfo.CONNECTION_ETHERNET] = "以太网 连接";
+				types[plus.networkinfo.CONNECTION_WIFI] = "WiFi 连接";
+				types[plus.networkinfo.CONNECTION_CELL2G] = "2G 蜂窝网络 连接";
+				types[plus.networkinfo.CONNECTION_CELL3G] = "3G 蜂窝网络 连接";
+				types[plus.networkinfo.CONNECTION_CELL4G] = "4G 蜂窝网络 连接";
 
-	</div>
-</body>
+				console.log("网络状况: " + types[plus.networkinfo.getCurrentType()]);
+				$("#content div").eq(0).text("网络状况: " + types[plus.networkinfo.getCurrentType()]);
+
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener("plusready", plusReady, false);
+			}
+
+
+        $(function() {
+            var ip_arr = new Array('84ecjh.natappfree.cc', '192.168.1.30', '192.168.1.112');
+
+            function sel_add(ip_arr) {
+                for (var i = 0; i < 3; i++) {
+                    var url = 'http://' + ip_arr[i] + '/mixes/mixes/login.php';
+                    $.ajax({
+                        url: url,
+                        success: function(data, name, xhr) {
+                            if (xhr.status == 200) {
+                                http = this.url;
+                                var pattern = /http:\/\/(.*?)\//g;
+                                var http_domain = pattern.exec(http);
+                                localStorage.server_url = http_domain[1];
+                                console.log(localStorage.server_url);
+                                window.location.href = 'source/login_test.html';
+                            }
+                        }
+                    });
+                }
+            }
+            sel_add(ip_arr);
+        });
+
+		</script>
+	</head>
+
+	<body>
+
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-plus-visible">
+					<a class="mui-navigate-right" href="source/login_test.html">
+						login_test.ajax
+					</a>
+				</li>
+				<li id="content" class="mui-table-view-cell mui-plus-visible" style="text-align: center;">
+					<div>
+					</div>
+					<div>
+						    <span id="test">正载加载中....</span>
+					</div>
+				</li>
+			</ul>
+
+		</div>
+	</body>
+
 </html>

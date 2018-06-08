@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<script type="text/javascript">
+			var qwe;
+			document.addEventListener('plusready', function() {
+					var xhr = new plus.net.XMLHttpRequest();
+					xhr.onreadystatechange = function() {
+						switch(xhr.readyState) {
+							case 0:
+								console.log("xhr请求已初始化");
+								break;
+							case 1:
+								console.log("xhr请求已打开");
+								break;
+							case 2:
+								console.log("xhr请求已发送");
+								break;
+							case 3:
+								console.log("xhr请求已响应");
+								break;
+							case 4:
+								if(xhr.status == 200) {
+									console.log("xhr请求成功：" + xhr.status);
+								} else {
+									console.log("xhr请求失败：" + xhr.status);
+								}
+								break;
+							default:
+								return 0;
+								break;
+						}
+					};
+					xhr.onloadend = function(){
+						console.log("onloaded中");
+						console.log("status"+xhr.status);
+						console.log("readystate"+xhr.readyState);
+						qwe=xhr.status;
+						if(xhr.status){
+							alert("地址正确");
+						}
+						else{
+							alert("地址错误");
+						}
+					};
+//					xhr.onerror = function(){
+//							console.log("error中");
+//						console.log("status"+xhr.status);
+//						console.log("readystate"+xhr.readyState);
+//};
+					xhr.timeout=3000;
+					xhr.open("POST", "http://192.168.1.112");
+					xhr.send();
+
+			}, false);		
+		</script>
+	</head>
+
+	<body>
+	</body>
+
+</html>

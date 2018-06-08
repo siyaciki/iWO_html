@@ -5,30 +5,7 @@
 	<title>设备信息</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 	<link href="../../css/mui.min.css" rel="stylesheet" />
-	<script src="../../js/jquery-1.8.0.js"></script>
-	<script type="text/javascript">
-// H5 plus事件处理
-function plusReady(){
-	var de=plus.device.model;
-	var ime=plus.device.imei;
-	var uid=plus.device.uuid;
-	var ah=plus.screen.resolutionHeight*plus.screen.scale;
-	var aw=plus.screen.resolutionWidth*plus.screen.scale;
-	var hw="Device:"+de+"<br>IMEI: "+ime+"<br>UUID: "+uid+"<br>高:"+ah+"<br> 宽:"+aw;
-	jQuery("#hw").html(hw);
-	
-	var mainActivity = plus.android.runtimeMainActivity();
-    var Settings= plus.android.importClass("android.provider.Settings");
-    var hw2="android id : "+Settings.Secure.getString(mainActivity.getContentResolver(),Settings.Secure.ANDROID_ID);
-	jQuery("#hw2").html(hw2);
-    
-}
-if(window.plus){
-	plusReady();
-}else{
-	document.addEventListener("plusready",plusReady,false);
-}
-	</script>
+
 	<style type="text/css">
 		#hw{
 			font-size: 40px;
@@ -51,7 +28,49 @@ if(window.plus){
 			<div id="hw">设备分辨率</div>
 			<hr/>
 			<div id="hw2">设备分辨率</div>
+			<hr/>
+			<div id="hw3">设备分辨率</div>
 		</div>
 	</body>
+		<script src="../../js/jquery-1.8.0.js"></script>
+	<script type="text/javascript">
+		
+	function getMac() { 
+    var mac = "xxx-xxx-xxx-xxx"; 
+    if (plus.os.name == "Android") { 
+        //WifiManager 
+        var Context = plus.android.importClass("android.content.Context"); 
+        var WifiManager = plus.android.importClass("android.net.wifi.WifiManager"); 
+        var wifiManager = plus.android.runtimeMainActivity().getSystemService(Context.WIFI_SERVICE); 
+        var WifiInfo = plus.android.importClass("android.net.wifi.WifiInfo"); 
+        var wifiInfo = wifiManager.getConnectionInfo(); 
+        mac = wifiInfo.getMacAddress(); 
+    } 
+    return mac; 
+} 
+// H5 plus事件处理
+function plusReady(){
+	var de=plus.device.model;
+	var ime=plus.device.imei;
+	var uid=plus.device.uuid;
+	var ah=plus.screen.resolutionHeight*plus.screen.scale;
+	var aw=plus.screen.resolutionWidth*plus.screen.scale;
+	var hw="Device:"+de+"<br>IMEI: "+ime+"<br>UUID: "+uid+"<br>高:"+ah+"<br> 宽:"+aw;
+	jQuery("#hw").html(hw);
+	
+	var mainActivity = plus.android.runtimeMainActivity();
+    var Settings= plus.android.importClass("android.provider.Settings");
+    var hw2="android id : "+Settings.Secure.getString(mainActivity.getContentResolver(),Settings.Secure.ANDROID_ID);
+	jQuery("#hw2").html(hw2);
+	var addr=getMac();
+	$("#hw3").html(addr);
+    
+}
+if(window.plus){
+	plusReady();
+}else{
+	document.addEventListener("plusready",plusReady,false);
+}
+	</script>
 </html>
 	
