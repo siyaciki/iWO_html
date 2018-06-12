@@ -6,11 +6,28 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<script src="js/mui.min.js"></script>
+		<script src="js/mui.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
-		<script src="js/jquery-1.8.0.js">
-		</script>
-		<script type="text/javascript" charset="utf-8">
-			mui.init();
+
+	</head>
+
+	<body>
+		<script>
+
+			function getMac() {
+				var mac = "xxx-xxx-xxx-xxx";
+				if(plus.os.name == "Android") {
+					//WifiManager 
+					var Context = plus.android.importClass("android.content.Context");
+					var WifiManager = plus.android.importClass("android.net.wifi.WifiManager");
+					var wifiManager = plus.android.runtimeMainActivity().getSystemService(Context.WIFI_SERVICE);
+					var WifiInfo = plus.android.importClass("android.net.wifi.WifiInfo");
+					var wifiInfo = wifiManager.getConnectionInfo();
+					mac = wifiInfo.getMacAddress();
+				}
+				return mac;
+			}
+
 			// H5 plus事件处理,检测网络
 			function plusReady() {
 				var types = {};
@@ -25,43 +42,15 @@
 				console.log("网络状况: " + types[plus.networkinfo.getCurrentType()]);
 				$("#content div").eq(0).text("网络状况: " + types[plus.networkinfo.getCurrentType()]);
 
+				var mac = getMac();
+				localStorage.setItem('mac', mac);
 			}
 			if(window.plus) {
 				plusReady();
 			} else {
 				document.addEventListener("plusready", plusReady, false);
 			}
-
-
-        $(function() {
-            var ip_arr = new Array('84ecjh.natappfree.cc', '192.168.1.30', '192.168.1.112');
-
-            function sel_add(ip_arr) {
-                for (var i = 0; i < 3; i++) {
-                    var url = 'http://' + ip_arr[i] + '/mixes/mixes/login.php';
-                    $.ajax({
-                        url: url,
-                        success: function(data, name, xhr) {
-                            if (xhr.status == 200) {
-                                http = this.url;
-                                var pattern = /http:\/\/(.*?)\//g;
-                                var http_domain = pattern.exec(http);
-                                localStorage.server_url = http_domain[1];
-                                console.log(localStorage.server_url);
-                                window.location.href = 'source/login_test.html';
-                            }
-                        }
-                    });
-                }
-            }
-            sel_add(ip_arr);
-        });
-
 		</script>
-	</head>
-
-	<body>
-
 		<div class="mui-content">
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell mui-plus-visible">
@@ -73,12 +62,45 @@
 					<div>
 					</div>
 					<div>
-						    <span id="test">正载加载中....</span>
+						<span id="test">正载加载中....</span>
 					</div>
 				</li>
 			</ul>
 
 		</div>
 	</body>
+	<script src="js/jquery-1.8.0.js">
+	</script>
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+		$(function() {
+			var ip_arr = new Array('84ecjh.natappfree.cc', '192.168.2.30', '192.168.1.112');
+
+			function sel_add(ip_arr) {
+				for(var i = 0; i < 3; i++) {
+					var str_url = 'http://' + ip_arr[i] + '/index.php?m=Home&c=Auth&a=login';
+					$.ajax({
+						url: str_url,
+						success: function(data, name, xhr) {
+							if(xhr.status == 200) {
+								http = this.url;
+								var pattern = /http:\/\/(.*?)\//g;
+								var http_domain = pattern.exec(http);
+								localStorage.server_addr = http_domain[1];
+								
+								var mac = localStorage.getItem('mac');
+								if(null != mac && "undefined" != typeof(mac) && "" != mac) {
+									window.location.href = 'source/login_test.html';
+								}else{
+									plusReady();
+								}
+							}
+						}
+					});
+				}
+			}
+			sel_add(ip_arr);
+		});
+	</script>
 
 </html>

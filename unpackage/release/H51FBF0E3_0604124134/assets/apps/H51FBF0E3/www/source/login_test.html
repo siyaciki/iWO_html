@@ -1,0 +1,97 @@
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/jquery-1.8.0.js">
+		<script>jQuery.noConflict()</script>
+		</script>
+		<script type="text/javascript">
+			jQuery(function() {
+				jQuery("#send").click(function() {
+					var cont = jQuery("input").serialize();
+					jQuery.ajax({
+						url: 'http://192.168.1.112/test/login.php',
+						type: 'post',
+						dataType: 'json',
+						data: cont,
+						async: false,
+						success: function(data) {
+							var str = data.username + data.password;
+							console.log(str);
+							//用户登录信息保存
+							localStorage.setItem('username', data.username);
+							localStorage.setItem('password', data.password);
+							if(str == "") {
+								str = "用户密码错误";
+								mui.toast(str);
+							} else {
+								mui.openWindow({
+									url: 'index.html',
+									id: 'index.html',
+								});
+							}
+						},
+						error: function(XMLHttpRequest, textStatus, errorThrown) {
+							var str = "用户名密码错误" + XMLHttpRequest.status + "---" + XMLHttpRequest.readyState + textStatus + "naiyo" + XMLHttpRequest.responseText;
+							mui.toast(str);
+							//									mui.openWindow({
+							//										url: 'error.html',
+							//										id: 'error_id',
+							//										extra:{
+							//											msg:'shujucuowu'
+							//										}
+							//									});
+						}
+					});
+				});
+
+				document.getElementById('jiu').addEventListener('tap', function() {
+					mui.toast("跳转主页");
+					mui.openWindow({
+						url: 'index.html',
+						id: 'index_id'
+					});
+				});
+				document.getElementById('jiu2').addEventListener('tap', function() {
+					mui.openWindow({
+						url: 'htmls.html',
+						id: 'htmls_id'
+					});
+				});
+
+			});
+		</script>
+	</head>
+
+	<body>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: true
+			});
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">乘务登录</h1>
+		</header>
+		<div class="mui-content">
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>用户名</label>
+					<input type="text" class="mui-input-clear" name="username" placeholder="input">
+				</div>
+				<div class="mui-input-row">
+					<label>密码</label>
+					<input type="text" class="mui-input-clear" name="password" placeholder="input">
+				</div>
+				<div class="" style="text-align: center;">
+					<button type="button" id="send" class="mui-btn mui-btn-blue">提交</button>
+					<button type="button" id="jiu" class="mui-btn mui-btn-green">主页九宫格</button>
+					<button type="button" id="jiu2" class="mui-btn mui-btn-blue">屏幕切换</button>
+				</div>
+			</form>
+		</div>
+	</body>
+
+</html>

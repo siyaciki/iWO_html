@@ -40,7 +40,8 @@
 			"source/content/biaoqingbao.html",
 			"source/content/socketTest.html",
 			"source/content/shebei.html",
-			"source/conn.html"
+			"source/conn.html",
+			"source/content/test1.html"
 		],
 		"resources": []
 	},
@@ -164,6 +165,11 @@
 		]
 	},
 	"source/content/shebei.html": {
+		"refer": [
+			"source/index.html"
+		]
+	},
+	"source/content/test1.html": {
 		"refer": [
 			"source/index.html"
 		]

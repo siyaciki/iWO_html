@@ -76,48 +76,41 @@
 		</div>
 		<script src="../../js/mui.min.js "></script>
 		<script src="../../js/jquery-1.8.0.js"></script>
+		<script src="../../js/localstroge.js"></script>
 		<script>
 			//list加载
 			function listload() {
 				jQuery("ul li").remove();
-				var numss = localStorage.getItem('noticeNum');
-				var a_cont = new Array();
-				a_cont["nums"] = numss;
-				var cont = a_cont.toString();
+				var url="http://"+server_addr +"/index.php?m=Home&c=Msg&a=index";
 				//获取数据
 				jQuery.ajax({
-					url: 'http://192.168.1.30/mixes/mixes/getMsg.php',
+					url:url ,
 					type: 'post',
 					dataType: 'json',
-					data: cont,
+					data: user_info,
 					async: false,
 					success: function(data) {
-						//接受数据库的数据并显示，listview
-						//长度，json数组的元素个数
-						var lens = data.length;
-						var key_array = Array();
-						//遍历json数组
-						for(var i = 0; i < lens; i++) {
-							//遍历元素数组
-							for(var key in data[i]) {
-								//mui.toast(data[i][key]);
-								//数组添加元素
-								key_array.push(data[i][key]);
+						if(data.code == 1) {
+							//长度，json数组的元素个数
+							var lens = data.data.length;
+							var datas = data.data;
+							//遍历json数组
+							for(var i = 0; i < lens; i++) {
+								//js中date设置时间戳是13位，php的time获取是10位
+								var unixTimestamp = new Date(datas[i].push_time * 1000);
+								var time_str = unixTimestamp.toLocaleString();
+								jQuery("ul").append("<li class='mui-table-view-cell'><div class='mui-table'><div class='mui-table-cell mui-col-xs-8'><b>" + datas[i].id + ":" + datas[i].title + "</b></div><div class='mui-table-cell mui-col-xs-4 mui-text-right'><span class='mui-h5'>" + datas[i].content + "</span><p class='mui-h6'>" + time_str + "</p></div></div></li>");
 							}
-							//mui.toast(key_array.length);
-							//js中date设置时间戳是13位，php的time获取是10位
-							var unixTimestamp = new Date(key_array[3] * 1000);
-							var time_str= unixTimestamp.toLocaleString();
-							jQuery("ul").append("<li class='mui-table-view-cell'><div class='mui-table'><div class='mui-table-cell mui-col-xs-8'><b>" + key_array[0] + ":" + key_array[2] + "</b></div><div class='mui-table-cell mui-col-xs-4 mui-text-right'><span class='mui-h5'>" + key_array[4] + "</span><p class='mui-h6'>" + time_str + "</p></div></div></li>");
-							key_array.splice(0, key_array.length);
+
+						} else {
+							console.log(data.msg);
 						}
-						//jQuery("#asd").html(data.length);
+
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {
 						var str = "连接错误" + XMLHttpRequest.status + "---" + XMLHttpRequest.readyState + textStatus + "naiyo" + XMLHttpRequest.responseText;
 						mui.toast(str);
 					}
-
 				});
 			}
 
@@ -128,14 +121,14 @@
 				//mui 初始化时设置pullRefresh各项参数
 				pullRefresh: {
 					container: '.mui-content', //待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
-					up: {
-
-						height: 50, //可选.默认50.触发上拉加载拖动距离
-						auto: false, //可选,默认false.自动上拉加载一次
-						contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
-						contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
-						callback: pullupRefresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
-					},
+//					up: {
+//
+//						height: 50, //可选.默认50.触发上拉加载拖动距离
+//						auto: false, //可选,默认false.自动上拉加载一次
+//						contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
+//						contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
+//						callback: pullupRefresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+//					},
 					down: {
 						style: 'circle',
 						callback: pulldownRefresh
@@ -143,12 +136,12 @@
 				}
 			});
 			//结束上拉加载
-			function pullupRefresh() {
-				setTimeout(function() {
-					listload();
-					mui('.mui-content').pullRefresh().endPullupToRefresh();
-				}, 1000);
-			}
+//			function pullupRefresh() {
+//				setTimeout(function() {
+//					listload();
+//					mui('.mui-content').pullRefresh().endPullupToRefresh();
+//				}, 1000);
+//			}
 
 			function pulldownRefresh() {
 				setTimeout(function() {

@@ -46,6 +46,7 @@
 	</body>
 	<script src="../../js/mui.min.js "></script>
 	<script src="../../js/jquery-1.8.0.js"></script>
+	<script src="../../js/localstroge.js"></script>
 	<script type="text/javascript">
 		jQuery(function() {
 
@@ -54,26 +55,26 @@
 				var title = jQuery("select option:selected").text();
 				//获取文本框数据
 				var text_area = jQuery("#areaTxt").val();
-				//获取登录用户名
-				var xingming = localStorage.getItem('username');
+
 				//获取当前时间戳
 				var timestamp = Math.round(new Date().getTime() / 1000).toString();
-				mui.toast(timestamp);
+				console.log(timestamp);
 				var cont = {
 					"title": title,
 					"content": text_area,
 					"time": timestamp,
-					"name": xingming
+					"crew_id": username,
+					"flight_id":flight_id
 				};
-
+				var url="http://"+server_addr +"/index.php?m=Home&c=Msg&a=addMsg";
 				jQuery.ajax({
-					url: 'http://192.168.1.30/mixes/mixes/insertMsg.php',
+					url: url,
 					type: 'post',
 					dataType: 'json',
 					data: cont,
 					async: false,
 					success: function(data) {
-						mui.back();
+						//mui.back();
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {
 						var str = "连接错误" + XMLHttpRequest.status + "---" + XMLHttpRequest.readyState + textStatus + "naiyo" + XMLHttpRequest.responseText;
