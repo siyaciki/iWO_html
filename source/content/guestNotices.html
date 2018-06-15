@@ -197,12 +197,22 @@
 			});
 		})(mui);
 
-		$("li").toggle(function(){
-			$(this).parent("ul").children("li").removeClass('clr');
-			$(this).addClass('clr');
-		},function(){
-			$(this).parent("ul").children("li").removeClass('clr');	
-		}).trigger('click');
+//		$("li").toggle(function(){
+//
+//			$(this).parent("ul").children("li").removeClass('clr');
+//			$(this).addClass('clr');
+//		},function(){
+//			$(this).parent("ul").children("li").removeClass('clr');	
+//		}).trigger('click');
+		
+		$("li").click(function(){
+			if($(this).hasClass('clr')){
+				$(this).parent("ul").children("li").removeClass('clr');
+			}else{
+				$(this).parent("ul").children("li").removeClass('clr');
+				$(this).addClass('clr');
+			}
+		});
 	</script>
 
 </html>
