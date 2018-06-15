@@ -80,10 +80,6 @@
 			</div>
 		</header>
 
-		<script src="../../js/mui.min.js"></script>
-		<script type="text/javascript">
-			mui.init();
-		</script>
 		<div class="mui-content">
 			<div style="margin: 5px 5px;">
 				<div id="item1" class="mui-control-content mui-active">
@@ -125,61 +121,91 @@
 
 				</div>
 
-			
-
 			</div>
 
 		</div>
 
 	</body>
 	<script src="../../js/jquery-1.8.0.js"></script>
+	<script src="../../js/localstroge.js"></script>
+	<script src="../../js/mui.min.js"></script>
 	<script>
 		jQuery(function() {
-					var cont = {};
-					jQuery.ajax({
-							url: 'http://192.168.1.30/mixes/mixes/guestAsks.php',
-							type: 'post',
-							dataType: 'json',
-							data: cont,
-							async: false,
-							success: function(data) {
-								var lens = data.length;
-								//json数组的元素个数
-								var key_array = Array();
-								for(var i = 0; i < lens; i++) {
-									//遍历元素数组
-									for(var key in data[i]) {
-										key_array.push(data[i][key]);
-									}
-									//计算时间差
-									var time_now=new Date().getTime();
-									var time_begin=key_array[2]*1000;
-									var time_last=time_now-time_begin;
-									var time_gap=Math.round(time_last/60000);
-									var unixTimestamp = new Date(key_array[6] * 1000);
-									var time_over= unixTimestamp.toLocaleString();
-									jQuery("ul").eq(1).append("<li class='mui-table-view-cell'><div class='mui-table'><div class='mui-table-cell mui-col-xs-2'><span class='mui-h3'>" + key_array[0] + "</span></div><div class='mui-table-cell mui-col-xs-1'><b>" + key_array[1] + "</b></div><div class='mui-table-cell mui-col-xs-4 mui-text-right'><span class='mui-h3'>" + key_array[3] + "</span></div><div class='mui-table-cell mui-col-xs-5'><p class='mui-h5'><b>" + time_over + "</b></p></div></div></li>");
-									jQuery("ul").eq(0).append("<li class='mui-table-view-cell'><div class='mui-table'><div class='mui-table-cell mui-col-xs-2'><span class='mui-h3'>" + key_array[0] + "</span></div><div class='mui-table-cell mui-col-xs-1'><b>" + key_array[1] + "</b></div><div class='mui-table-cell mui-col-xs-3 mui-text-right'><span class='mui-h3'>" + key_array[3] + "</span></div><div class='mui-table-cell mui-col-xs-3'><p class='mui-h5'><b>" + time_gap + "分钟前</b></p></div><div class='mui-table-cell mui-col-xs-3'><select class='mui-btn' style='width:4.4em; text-align: center;'><option value='item-1'>响应</option><option value='item-2'>忽略</option><option value='item-3'>屏蔽</option></select></div></div></li>");
-									key_array.splice(0, key_array.length);
-									}
-								},
-								error: function(XMLHttpRequest, textStatus, errorThrown) {
-									var str = "连接错误" + XMLHttpRequest.status + "---" + XMLHttpRequest.readyState + textStatus + "naiyo" + XMLHttpRequest.responseText;
-									mui.toast(str);
-								}
-							});
-					}); document.getElementById("switch").addEventListener('toggle', function(event) {
-					//event.detail.isActive 可直接获取当前状态
-					//mui.toast('状态：' + (event.detail.isActive ? 'true' : 'false'));
-					if(event.detail.isActive == false) {
-						jQuery(".mui-content").hide();
+			var url = "http://" + server_addr + "/index.php?m=Home&c=Request&a=index";
+			jQuery.ajax({
+				url: url,
+				type: 'post',
+				dataType: 'json',
+				data: user_info,
+				async: false,
+				success: function(data) {
+					if(data.code == 1) {
+						var datas = data.data;
+						var lens = datas.length;
+						for(var i = 0; i < lens; i++) {
+							//js中date设置时间戳是13位，php的time获取是10位						
+							var time_now = new Date().getTime();
+							var time_begin = datas[i].requesttime * 1000;
+							//时间差
+							var time_last = time_now - time_begin;
+							var time_gap = Math.round(time_last / 60000);
+							//响应时间
+							var unixTimestamp = new Date(datas[i].responsetime * 1000);
+							var time_over = unixTimestamp.toLocaleString();
+							if(datas[i].response_status == '0') {
+								jQuery("ul").eq(0).append("<li class='mui-table-view-cell'><div class='mui-table'><div class='mui-table-cell mui-col-xs-2'><span class='mui-h3'>" + datas[i].name + "</span></div><div class='mui-table-cell mui-col-xs-1'><b>" + datas[i].seat + "</b></div><div class='mui-table-cell mui-col-xs-3 mui-text-right'><span class='mui-h3'>" + datas[i].content + "</span></div><div class='mui-table-cell mui-col-xs-3'><p class='mui-h5'><b>" + time_gap + "分钟前</b></p></div><div class='mui-table-cell mui-col-xs-3'><button id='" + datas[i].id + "' class='mui-btn mui-btn-primary mui-btn-outlined'>处理" + datas[i].id + "</button></div></div></li>");
+								var bt_id = datas[i].id;
+								$("#" + datas[i].id).live("click", function() {
+									var btnArray = ['取消', '屏蔽', '完成'];
+									mui.confirm('请选择你的处理方式', '处理操作', btnArray, function(e) {
+										if(e.index == 2) {
+											alert('已完成');
+											var ch_info = {
+												"id": this.id,
+												"response_status": '1',
+												"response_time": Math.round(new Date().getTime()/1000),
+												"crew_id":crew_id
+											};
+											var cont = $.extend(ch_info, user_info);
+											var url = "http://" + server_addr + "/index.php?m=Home&c=Request&a=change";
+											$.post(url, cont, function(data) {
+												if(data.code == 1) {
+													console.log(data);
+												} else {
+													console.log(data.msg);
+												}
+											}, "json");
+										} else if(e.index == 1) {
+											alert('已屏蔽');
+										} else {
+											alert('无操作');
+										}
+									})
+								});
+							} else {
+								jQuery("ul").eq(1).append("<li class='mui-table-view-cell'><div class='mui-table'><div class='mui-table-cell mui-col-xs-2'><span class='mui-h3'>" + datas[i].name + "</span></div><div class='mui-table-cell mui-col-xs-1'><b>" + datas[i].seat + "</b></div><div class='mui-table-cell mui-col-xs-4 mui-text-right'><span class='mui-h3'>" + datas[i].content + "</span></div><div class='mui-table-cell mui-col-xs-5'><p class='mui-h5'><b>" + time_over + "</b></p></div></div></li>");
+							}
+						}
+
 					} else {
-						jQuery(".mui-content").show();
+						console.log(data.msg);
 					}
-				});
-	</script>
-	<script src="../js/mui.min.js"></script>
-	<script>
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					var str = "连接错误" + XMLHttpRequest.status + "---" + XMLHttpRequest.readyState + textStatus + "naiyo" + XMLHttpRequest.responseText;
+					mui.toast(str);
+				}
+			});
+		});
+		document.getElementById("switch").addEventListener('toggle', function(event) {
+			//event.detail.isActive 可直接获取当前状态
+			//mui.toast('状态：' + (event.detail.isActive ? 'true' : 'false'));
+			if(event.detail.isActive == false) {
+				jQuery(".mui-content").hide();
+			} else {
+				jQuery(".mui-content").show();
+			}
+		});
 		mui.init({
 			swipeBack: false
 		});

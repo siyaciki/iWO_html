@@ -6,39 +6,48 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<style>
 			body {
-				background: url("../fonts/pic/background.jpg") no-repeat;
-				color:#FFF;
+				background: url("../fonts/pic/background.jpg");
+				background-size: 100%;
+				color: #FFF;
 			}
 			
 			.mui-bar {
 				background: transparent;
 			}
+			
 			.mui-bar-nav {
-				    box-shadow:none;
+				box-shadow: none;
 			}
-			form{
+			
+			form {
 				background: transparent;
 			}
-			input{
-				background:transparent;
+			
+			input {
+				background: transparent;
 			}
-			.mui-input-row{
-			background: rgba(0, 0, 0, 0.5);
-			margin-bottom: 1em;;
-			/*opacity:0.1;
+			
+			.mui-input-row {
+				background: rgba(0, 0, 0, 0.5);
+				margin-bottom: 1em;
+				;
+				/*opacity:0.1;
 				filter:Alpha(opacity=10);*/
 			}
-			.mui-title{
-				color:white;
+			
+			.mui-title {
+				color: white;
 			}
+			
 			.mui-content {
 				background: transparent;
 				margin-top: 50%;
 				padding-left: 10%;
 				padding-right: 10%;
 			}
-			footer{
-				height:10%;
+			
+			footer {
+				height: 10%;
 				width: 100%;
 				position: fixed;
 				bottom: 0;
@@ -57,20 +66,20 @@
 			<h1 class="mui-title">乘务登录</h1>
 		</header>
 		<div class="mui-content">
-				<div class="mui-input-row">
-					<label class="mui-title"><span class="mui-icon mui-icon-person"></span></label>
-					<input id="username" type="text" class="mui-input" name="username" placeholder="请输入用户名" autofocus="autofocus" maxlength="8">
-				</div>
-				<div class="mui-input-row">
-					<label class="mui-title"><span class="mui-icon mui-icon-locked"></span></label>
-					<input id="password" type="password" class="mui-input" name="password" placeholder="请输入密码" maxlength="20" >
-				</div>
-				<div style="text-align: center;">
-					<button type="button" id="send" class="mui-btn mui-btn-blue">登录</button>
-					<button type="button" id="reset" class="mui-btn mui-btn-green">重置</button>
-					<button type="button" id="jiu2" class="mui-btn mui-btn-blue">屏幕切换</button>
-				</div>
-				<div id="asd">dizhi</div>
+			<div class="mui-input-row">
+				<label class="mui-title"><span class="mui-icon mui-icon-person"></span></label>
+				<input id="username" type="text" class="mui-input" name="username" placeholder="请输入用户名" maxlength="8" oninput="chk_input()">
+			</div>
+			<div class="mui-input-row">
+				<label class="mui-title"><span class="mui-icon mui-icon-locked"></span></label>
+				<input id="password" type="password" class="mui-input" name="password" placeholder="请输入密码" maxlength="20" oninput="chk_input()">
+			</div>
+			<div style="text-align: center;">
+				<button type="button" id="send" class="mui-btn" disabled="disabled">登录</button>
+				<button type="button" id="new_send" class="mui-btn mui-btn-blue">新登录</button>
+				<button type="button" id="jiu2" class="mui-btn mui-btn-blue">屏幕切换</button>
+			</div>
+			<div id="asd">dizhi</div>
 		</div>
 		<footer>
 			<h1 class="mui-title">powered by iWO乘务管家</h1>
@@ -78,130 +87,77 @@
 	</body>
 	<script src="../js/jquery-1.8.0.js"></script>
 	<script type="text/javascript">
-		function findStr(str, n) {
-			var temp = 0;
-			for(var i = 0; i < str.length; i++) {
-				if(str.charAt(i) == n) {
-					temp++;
-				}
+		function chk_input() {
+			var username = $("#username").val();
+			var password = $("#password").val();
+			var username_zz = /[0-9a-zA-Z_]{3,8}/g;
+			var password_zz = /[0-9a-zA-Z_]{6,10}/g;
+			if(username_zz.test(username) && password_zz.test(password)) {
+				$("#send").removeAttr("disabled");
+				$("#send").addClass("mui-btn-primary");
+			} else {
+				$("#send").attr('disabled', 'disabled');
+				$("#send").removeClass("mui-btn-primary");
 			}
-			return temp;
-		}
-		//jQuery(function() {
-		var mac = localStorage.getItem('mac');
-		var username = localStorage.getItem('username');
-		//		console.log(mac);
-		$("#send").hide();
-		var server_addr = localStorage.getItem('server_addr');
-		$("#asd").text(server_addr + "————" + mac + "——————" + username);
-		if(null != username && "undefined" != typeof(username) && "" != username) {
-			window.location.href = 'index.html';
-		}
-		jQuery("#send").click(function() {
-			var cont = jQuery("input").serialize() + "&mac=" + mac;
-			var str_url = "http://" + server_addr + "/index.php?m=Home&c=Auth&a=login";
-			jQuery.ajax({
-				url: str_url,
-				type: 'post',
-				dataType: 'json',
-				data: cont,
-				async: false,
-				success: function(success_data) {
-					if(success_data.code == 1) {
-						localStorage.setItem('username', success_data.data['username']);
-						localStorage.setItem('token', success_data.data['token']);
-						localStorage.setItem('login_time', success_data.data['login_time']);
-						psw.value = "";
-						oName.value = "";
-						mui.openWindow({
-							url: 'index.html',
-							id: 'index.html',
-						});
-					} else {
-						mui.toast("用户密码错误");
+		};
+		jQuery(function() {
+			var mac = localStorage.getItem('mac');
+			var username = localStorage.getItem('username');
+			var server_addr = localStorage.getItem('server_addr');
+
+			//判断是否登陆
+			$("#asd").text(server_addr + "————" + mac + "——————" + username);
+			if(null != username && "undefined" != typeof(username) && "" != username) {
+				window.location.href = 'index.html';
+			}
+			//等录判断
+			jQuery("#send").click(function() {
+				var cont = jQuery("input").serialize() + "&mac=" + mac;
+				var str_url = "http://" + server_addr + "/index.php?m=Home&c=Auth&a=login";
+				jQuery.ajax({
+					url: str_url,
+					type: 'post',
+					dataType: 'json',
+					data: cont,
+					async: false,
+					success: function(success_data) {
+						console.log(success_data.code + "---" + success_data.msg);
+						if(success_data.code == 1) {
+							localStorage.setItem('username', success_data.data['username']);
+							localStorage.setItem('token', success_data.data['token']);
+							localStorage.setItem('login_time', success_data.data['login_time']);
+							window.location.href = 'index.html';
+						} else {
+							mui.alert("用户密码错误");
+						}
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						var str = "用户名密码错误" + XMLHttpRequest.status + "---" + XMLHttpRequest.readyState + textStatus + "naiyo" + XMLHttpRequest.responseText;
+						mui.alert(str);
 					}
-				},
-				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					var str = "用户名密码错误" + XMLHttpRequest.status + "---" + XMLHttpRequest.readyState + textStatus + "naiyo" + XMLHttpRequest.responseText;
-					mui.toast(str);
-				}
+				});
 			});
-		});
-
-		var name_state = false;
-		var psw_state = false;
-		var re_n = /[^\d]/g;
-		var re_t = /[^a-zA-Z]/g;
-		var oName = document.getElementById("username");
-		oName.onblur = function() {
-			var m = findStr(this.value, this.value[0]);
-			if(this.value == "") {
-				mui.toast("用户名不能为空");
-				name_state = false;
-			} else if(m == this.value.length) {
-				mui.toast("用户名不能为相同字符");
-				name_state = false;
-			} else if(this.value.length < 2) {
-				mui.toast("用户名长度应为3-8个字符");
-				name_state = false;
-			} else {
-				name_state = true;
-
-			}
-		}
-		oName.oninput = function() {
-			if(this.value.length > 3 && psw_state) {
-				$("#send").show();
-			} else {
-				$("#send").hide();
-			}
-
-		}
-
-		var psw = document.getElementById("password");
-		psw.onblur = function() {
-
-			//不能为空 不能相同字符 长度6-16 不能全数字 不能全字母 
-			var m = findStr(psw.value, psw.value[0]);
-			if(psw.value == "") {
-				mui.toast("密码不能为空");
-				psw_state = false;
-			} else if(m == psw.value.length) {
-				mui.toast("密码不能为相同字符");
-				psw_state = false;
-			} else if(psw.value.length < 6) {
-				mui.toast("密码长度应为6-10个字符");
-				psw_state = false;
-				//				} else if(!re_n.test(psw.value)) {
-				//					mui.toast("密码不能全部为数字");
-				//					psw_state = false;
-				//				} else if(!re_t.test(psw.value)) {
-				//					mui.toast("密码不能全部为字母");
-				//					psw_state = false;
-			} else {
-				psw_state = true;
-			}
-
-		}
-		psw.oninput = function() {
-			if(this.value.length > 5 && name_state) {
-				$("#send").show();
-			} else {
-				$("#send").hide();
-			}
-		}
-		document.getElementById('reset').addEventListener('tap', function() {
-			psw.value = "";
-			oName.value = "";
-			oName.onfocus();
-		});
-		document.getElementById('jiu2').addEventListener('tap', function() {
-			mui.openWindow({
-				url: 'htmls.html',
-				id: 'htmls_id'
+			document.getElementById('new_send').addEventListener('tap', function() {
+				mui.openWindow({
+					url: 'login_test2.html',
+					id: 'login_test2_id'
+				});
 			});
+			document.getElementById('jiu2').addEventListener('tap', function() {
+				mui.openWindow({
+					url: 'htmls.html',
+					id: 'htmls_id'
+				});
+			});
+  			$("input").keydown(function(event){
+  				var event_name = $(this).attr('id');
+  				if(event.which===13 && event_name==="username"){
+  					$("#password").focus();
+  				}else if(event.which===13 && event_name==="password"){
+  					$("#password").blur();
+  				}
+  			});
 		});
-		//	});
 	</script>
 
 </html>

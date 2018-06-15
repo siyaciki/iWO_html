@@ -59,13 +59,14 @@
 				//获取当前时间戳
 				var timestamp = Math.round(new Date().getTime() / 1000).toString();
 				console.log(timestamp);
-				var cont = {
+				var msg_new = {
 					"title": title,
 					"content": text_area,
-					"time": timestamp,
+					"push_time": timestamp,
 					"crew_id": username,
 					"flight_id":flight_id
 				};
+				var cont= $.extend(msg_new, user_info);
 				var url="http://"+server_addr +"/index.php?m=Home&c=Msg&a=addMsg";
 				jQuery.ajax({
 					url: url,
@@ -74,7 +75,7 @@
 					data: cont,
 					async: false,
 					success: function(data) {
-						//mui.back();
+						mui.back();
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {
 						var str = "连接错误" + XMLHttpRequest.status + "---" + XMLHttpRequest.readyState + textStatus + "naiyo" + XMLHttpRequest.responseText;

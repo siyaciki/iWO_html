@@ -4,7 +4,11 @@
 			"source/register.html",
 			"source/login_test.html"
 		],
-		"resources": []
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/mui.js"
+		]
 	},
 	"source/login_test.html": {
 		"refer": [
@@ -14,9 +18,14 @@
 			"index.html",
 			"source/htmls.html",
 			"source/shebei.html",
-			"source/test.html"
+			"source/test.html",
+			"source/login_test2.html"
 		],
-		"resources": []
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"fonts/pic/background.jpg"
+		]
 	},
 	"source/index.html": {
 		"refer": [
@@ -41,7 +50,11 @@
 			"source/content/socketTest.html",
 			"source/content/shebei.html",
 			"source/conn.html",
-			"source/content/test1.html"
+			"source/content/test1.html",
+			"source/content/test2.html",
+			"source/content/sys_info.html",
+			"source/content/guestNotices.html",
+			"source/login_test2.html"
 		],
 		"resources": []
 	},
@@ -170,6 +183,26 @@
 		]
 	},
 	"source/content/test1.html": {
+		"refer": [
+			"source/index.html"
+		]
+	},
+	"source/content/test2.html": {
+		"refer": [
+			"source/index.html"
+		]
+	},
+	"source/content/sys_info.html": {
+		"refer": [
+			"source/index.html"
+		]
+	},
+	"source/content/guestNotices.html": {
+		"refer": [
+			"source/index.html"
+		]
+	},
+	"source/login_test2.html": {
 		"refer": [
 			"source/index.html"
 		]

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>登录</title>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+</head>
+
+<body>
+
+    <div class="cont">
+        <div class="demo">
+            <div class="login">
+                <div class=""></div>
+                <div class="login__form">
+                    <div class="login__row">
+                        <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
+          </svg>
+                        <input type="text" name="username" class="login__input name" placeholder="请输入用户名" oninput="chk_input()" />
+                    </div>
+                    <div class="login__row">
+                        <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
+          </svg>
+                        <input type="password" name="password" class="login__input pass" placeholder="请输入密码" oninput="chk_input()" />
+                    </div>
+                    <button type="button" class="login__submit" disabled="disabled" style="background:#333!important;">登录</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src='../js/jquery-1.8.0.js'></script>
+    <script type="text/javascript" src='../js/index.js'></script>
+    <script>
+        function chk_input() {
+            var username = $('input[name="username"]').val();
+            var password = $('input[name="password"]').val();
+            var username_zz = /[a-z]{1}[0-9a-zA-Z_]{5,19}/g;
+            var password_zz = /[a-z]{1}[0-9a-zA-Z_]{5,19}/g;
+            if (username_zz.test(username) && password_zz.test(password)) {
+                $('button[type="button"]').removeAttr('disabled');
+                $('button[type="button"]').attr('style', 'background:#F36!important;');
+            } else {
+                $('button[type="button"]').attr('disabled', 'disabled');
+                $('button[type="button"]').attr('style', 'background:#333!important;');
+            }
+        };
+
+        function dologin(that) {
+            var username = $('input[name="username"]').val();
+            var password = $('input[name="password"]').val();
+            var url = "http://" + localStorage.server_addr + "/index.php?m=Home&c=Auth&a=login";
+            var data = {
+                username: username,
+                password: password,
+                mac: '08:00:27:ab:f2:27'
+            }
+            $.post(url, data, function(data) {
+                console.log(data.code);
+                if (data.code == 1) {
+                    //记录返回数据
+                    localStorage.username = data.data.username;
+                    localStorage.mac = data.data.mac;
+                    localStorage.login_time = data.data.login_time;
+                    localStorage.token = data.data.token;
+                    if (localStorage.username !== '') {
+
+                        setTimeout(function() {
+                            $(that).addClass("success");
+                        }, 1000);
+
+                        window.location.href = "index.html";
+                    } else {
+                        $(that).removeClass("processing");
+                        alert('登录失败');
+                    }
+                } else {
+                    $(that).removeClass("processing");
+                    alert(data.msg);
+                }
+            }, "json");
+        }
+
+
+        //加载时启动
+        $(function() {
+            //进行是否登录检测    已登录跳转到index页面 
+            var url = localStorage.server_url + "/index.php?m=Home&c=Auth&a=test_login";
+            var data = {
+                'username': localStorage.username,
+                'mac': localStorage.mac,
+                'login_time': localStorage.login_time,
+                'token': localStorage.token
+            }
+            $.post(url, data, function(data) {
+                if (data.code == 1) {
+                    window.location.href = 'index.html';
+                }
+            }, "json");
+        });
+    </script>
+</body>
+
+</html>

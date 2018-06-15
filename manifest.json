@@ -121,7 +121,11 @@
 	"dependencies": {
 		"pages": {
 			"index.html": {
-				"resources": [],
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/mui.js"
+				],
 				"refer": [
 					"source/register.html",
 					"source/login_test.html"
@@ -129,7 +133,11 @@
 				"priority": 0
 			},
 			"source/login_test.html": {
-				"resources": [],
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"fonts/pic/background.jpg"
+				],
 				"refer": [
 					"source/cehua.html",
 					"source/index.html",
@@ -137,7 +145,8 @@
 					"index.html",
 					"source/htmls.html",
 					"source/shebei.html",
-					"source/test.html"
+					"source/test.html",
+					"source/login_test2.html"
 				],
 				"priority": 0
 			},
@@ -165,7 +174,11 @@
 					"source/content/socketTest.html",
 					"source/content/shebei.html",
 					"source/conn.html",
-					"source/content/test1.html"
+					"source/content/test1.html",
+					"source/content/test2.html",
+					"source/content/sys_info.html",
+					"source/content/guestNotices.html",
+					"source/login_test2.html"
 				],
 				"priority": 0
 			},
@@ -340,6 +353,34 @@
 					"source/index.html"
 				],
 				"priority": 0
+			},
+			"source/content/test2.html": {
+				"resources": [],
+				"refer": [
+					"source/index.html"
+				],
+				"priority": 0
+			},
+			"source/content/sys_info.html": {
+				"resources": [],
+				"refer": [
+					"source/index.html"
+				],
+				"priority": 0
+			},
+			"source/content/guestNotices.html": {
+				"resources": [],
+				"refer": [
+					"source/index.html"
+				],
+				"priority": 0
+			},
+			"source/login_test2.html": {
+				"resources": [],
+				"refer": [
+					"source/index.html"
+				],
+				"priority": 0
 			}
 		},
 		"idle": {
@@ -349,12 +390,10 @@
 				"fonts/iconfont.woff",
 				"css/download/font_6knk8dptj149ggb9/demo_fontclass.html",
 				"css/download/font_6knk8dptj149ggb9/demo.css",
-				"js/mui.min.js",
 				"css/download/font_6knk8dptj149ggb9/demo_symbol.html",
 				"fonts/iconfont.svg",
 				"fonts/iconfont.ttf",
 				"css/download/font_6knk8dptj149ggb9/iconfont.svg",
-				"js/mui.js",
 				"css/download/font_6knk8dptj149ggb9/iconfont.eot",
 				"css/download/font_6knk8dptj149ggb9/iconfont.js",
 				"fonts/mui.ttf",
@@ -362,7 +401,6 @@
 				"css/mui.css",
 				"css/download/font_6knk8dptj149ggb9/iconfont.css",
 				"fonts/iconfont.eot",
-				"css/mui.min.css",
 				"download.zip"
 			]
 		}

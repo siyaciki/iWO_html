@@ -13,7 +13,6 @@
 
 	<body>
 		<script>
-
 			function getMac() {
 				var mac = "xxx-xxx-xxx-xxx";
 				if(plus.os.name == "Android") {
@@ -74,7 +73,7 @@
 	<script type="text/javascript" charset="utf-8">
 		mui.init();
 		$(function() {
-			var ip_arr = new Array('84ecjh.natappfree.cc', '192.168.2.30', '192.168.1.112');
+			var ip_arr = new Array('3attpd.natappfree.cc', '192.168.2.112');
 
 			function sel_add(ip_arr) {
 				for(var i = 0; i < 3; i++) {
@@ -87,12 +86,17 @@
 								var pattern = /http:\/\/(.*?)\//g;
 								var http_domain = pattern.exec(http);
 								localStorage.server_addr = http_domain[1];
-								
+								//获取航班号
+								localStorage.flight_id = "A11102";
 								var mac = localStorage.getItem('mac');
 								if(null != mac && "undefined" != typeof(mac) && "" != mac) {
 									window.location.href = 'source/login_test.html';
-								}else{
-									plusReady();
+								} else {
+									if(window.plus) {
+										plusReady();
+									} else {
+										document.addEventListener("plusready", plusReady, false);
+									}
 								}
 							}
 						}
