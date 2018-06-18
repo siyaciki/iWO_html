@@ -208,9 +208,12 @@
 		$("li").click(function(){
 			if($(this).hasClass('clr')){
 				$(this).parent("ul").children("li").removeClass('clr');
+				$("span").attr("style","");
 			}else{
 				$(this).parent("ul").children("li").removeClass('clr');
 				$(this).addClass('clr');
+				$("span").attr("style","");
+				$(this).children("span").attr("style","color:red");
 			}
 		});
 	</script>
